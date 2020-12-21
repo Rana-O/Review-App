@@ -1,8 +1,5 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews = [
-      "よきだった！",
-      "まあまあだった、、"
-    ]
+    @reviews = Review.all
   end
 end

@@ -1,19 +1,17 @@
-<header>
-  <div class="header-container">
-    <div class="header-logo">
-    <h1><a href="/">REVIEW APP</a></h1>
-    </div>
-    <ul class="header-menus">
-      <li><a href="/about">About</a></li>
-    </ul>
-  </div>
-</header>
+<style>
+  .reviews-index .review-index-item {
+    padding: 20px 30px;
+    margin: 20px 50px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px #c1ced7;
+  }
+</style>
 
 <div class="main reviews-index">
   <div class="container">
     <% @reviews.each do |review| %>
       <div class="review-index-item">
-        <%= review %>
+        <%= review.others %>
       </div>
     <% end %>
   </div>
