@@ -15,4 +15,7 @@ class ReviewsController < ApplicationController
     @review.save
     redirect_to(reviews_path)
   end
+
+  def edit
+  end
 end
