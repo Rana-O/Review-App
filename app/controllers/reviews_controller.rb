@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews = Review.all
+    @reviews = Review.all.order(created_at: :desc)
   end
 
   def show
@@ -8,5 +8,11 @@ class ReviewsController < ApplicationController
   end
 
   def new
+  end
+
+  def create
+    @review = Review.new(others: params[:others])
+    @review.save
+    redirect_to(reviews_path)
   end
 end
