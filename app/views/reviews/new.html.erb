@@ -31,6 +31,11 @@
     <%= form_tag(reviews_path, method: :post) do %>
       <div class="form">
         <div class="form-body">
+          <% @review.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
           <textarea name="others"></textarea>
           <input type="submit" value="投稿">
         </div>
