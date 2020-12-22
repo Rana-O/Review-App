@@ -1,0 +1,21 @@
+<style>
+  .reviews-show .review-show-item {
+    padding: 20px 30px;
+    margin: 20px 50px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px #c1ced7;
+  }
+</style>
+
+<div class="main reviews-show">
+  <div class="container">
+    <div class="review-show-item">
+      <p>
+        <%= @review.others %>
+      </p>
+      <p>
+        <%= @review.created_at %>
+      </p>
+    </div>
+  </div>
+</div>

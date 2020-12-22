@@ -11,7 +11,7 @@
   <div class="container">
     <% @reviews.each do |review| %>
       <div class="review-index-item">
-        <%= review.others %>
+        <%= link_to(review.others, review_path(review)) %>
       </div>
     <% end %>
   </div>
