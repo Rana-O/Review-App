@@ -12,6 +12,7 @@
   .reviews-show .review-show-item .review-menus a {
     color: #8899a6;
     text-decoration: underline;
+    margin: 0 10px;
   }
 
 </style>
@@ -29,6 +30,7 @@
       </div>
       <div class="review-menus">
         <%= link_to("編集", edit_review_path) %>
+        <%= link_to("削除", review_path, method: :delete, data: {confirm: "削除しますか？"}) %>
       </div>
     </div>
   </div>
