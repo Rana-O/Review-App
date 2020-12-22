@@ -23,8 +23,11 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find_by(id: params[:id])
     @review.others = params[:others]
-    @review.save
-    redirect_to(reviews_path)
+    if @review.save
+      redirect_to(reviews_path)
+    else
+      render(:edit)
+    end
   end
 
   def destroy
