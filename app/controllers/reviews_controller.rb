@@ -24,6 +24,7 @@ class ReviewsController < ApplicationController
     @review = Review.find_by(id: params[:id])
     @review.others = params[:others]
     if @review.save
+      flash[:notice] = "レビューを編集しました"
       redirect_to(reviews_path)
     else
       render(:edit)
