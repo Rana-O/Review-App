@@ -29,13 +29,15 @@
 <div class="main reviews-edit">
   <div class="container">
     <h1>編集する</h1>
-    <div class="form">
-      <div class="form-body">
-        <textarea>
-          <%= @review.others %>
-        </textarea>
-        <input type="submit" value="保存">
+    <%= form_tag(review_path, method: :put) do %>
+      <div class="form">
+        <div class="form-body">
+          <textarea name="others">
+            <%= @review.others %>
+          </textarea>
+          <input type="submit" value="保存">
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
