@@ -1,0 +1,27 @@
+<style>
+.users-index .users-index-item {
+  padding: 20px 30px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  display: table;
+  width: 100%
+}
+.users-index .users-index-item a {
+  display: block;
+  width: inherit;
+}
+</style>
+
+<div class="main users-index">
+  <div class="container">
+    <h1 class="users-heading">ユーザ一覧</h1>
+    <% @users.each do |user| %>
+      <div class="users-index-item">
+        <div class="user-name">
+        <%= link_to(user.name, user_path(user)) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
