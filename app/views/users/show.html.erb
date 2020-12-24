@@ -2,6 +2,11 @@
   .user-show .user {
     text-align: center;
   }
+  .user-show .user a {
+    color: #8899a6;
+    text-decoration: underline;
+    margin: 0 10px;
+  }
 </style>
 
 <div class="main user-show">
@@ -9,6 +14,8 @@
     <div class="user">
       <h1><%= @user.name %></h1>
       <p><%= @user.email %></p>
+      <%= link_to("編集", edit_user_path) %>
+      <%= link_to("削除", user_path, method: :delete, data: {confirm: "#{@user.name}を削除しますか？"}) %>
     </div>
   </div>
 </div>

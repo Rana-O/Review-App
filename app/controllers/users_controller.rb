@@ -20,4 +20,21 @@ class UsersController < ApplicationController
       render(:new)
     end
   end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.name = params[:name]
+    @user.email = params[:email]
+    if @user.save
+      flash[:notice] ="ユーザ情報を編集しました"
+      redirect_to(user_path)
+    else
+      render(:edit)
+    end
+  end
+
 end
