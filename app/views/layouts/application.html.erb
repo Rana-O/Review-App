@@ -16,13 +16,16 @@
           <h1><%= link_to("REVIEW APP", "/") %></h1>
         </div>
         <ul class="header-menus">
-          <li><%= link_to("REVIEW APPとは", "/about")%></li>
-          <li><%= link_to("レビューリスト", reviews_path) %></li>
-          <li><%= link_to("ユーザリスト", users_path) %></li>
-          <li><%= link_to("レビューする", new_review_path) %></li>
-          <li><%= link_to("新規登録", new_user_path) %></li>
-          <li><%= link_to("ログイン", "/login") %></li>
-          <li>現在ログインしているユーザのid:<%= session[:user_id] %></li>
+          <% if session[:user_id] %>
+            <li><%= link_to("レビューリスト", reviews_path) %></li>
+            <li><%= link_to("ユーザリスト", users_path) %></li>
+            <li><%= link_to("レビューする", new_review_path) %></li>
+            <li><%= link_to("ログアウト", "/logout", {method: :post}) %></li>
+          <% else %>
+            <li><%= link_to("REVIEW APPとは", "/about")%></li>
+            <li><%= link_to("新規登録", new_user_path) %></li>
+            <li><%= link_to("ログイン", "/login") %></li>
+          <% end %>
         </ul>
       </div>
     </header>
