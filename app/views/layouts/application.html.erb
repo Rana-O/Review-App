@@ -16,9 +16,8 @@
           <h1><%= link_to("REVIEW APP", "/") %></h1>
         </div>
         <ul class="header-menus">
-          <% current_user = User.find(session[:user_id] )%>
-          <% if current_user %>
-            <li><%= link_to(current_user.name, user_path(current_user.id)) %></li>
+          <% if @current_user %>
+            <li><%= link_to(@current_user.name, user_path(@current_user.id)) %></li>
             <li><%= link_to("レビューリスト", reviews_path) %></li>
             <li><%= link_to("ユーザリスト", users_path) %></li>
             <li><%= link_to("レビューする", new_review_path) %></li>
