@@ -12,8 +12,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(name: params[:name], email: params[:email])
+    @user = User.new(
+      name: params[:name],
+      email: params[:email],
+      password: params[:password]
+    )
     if @user.save
+      session[:user_id] = @user.id
       flash[:notice] = "ユーザ登録が完了しました"
       redirect_to(user_path(@user.id))
     else
