@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get '/' => 'home#top'
   get 'about' => 'home#about'
-  get 'login' => 'users#login_form'
+  get 'login' => 'users#login_form', as: :login
   post 'login' => 'users#login'
   post 'logout' =>'users#logout'
   resources :reviews
