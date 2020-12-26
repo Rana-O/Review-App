@@ -13,3 +13,81 @@
  *= require_tree .
  *= require_self
  */
+
+ /* reset ================================ */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font: 100%/1.5 'Avenir Next', 'Hiragino Sans', sans-serif;
+  line-height: 1.7;
+  letter-spacing: 1px;
+}
+
+ul, li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #2d3133;
+  font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+input {
+  background-color: transparent;
+  outline-width: 0;
+}
+
+form input[type="submit"] {
+  border: none;
+  cursor: pointer;
+}
+
+ /* 共通レイアウト ================================ */
+body {
+  color:#ee8070;
+  background-color: white;
+  margin: 0;
+  min-height: 1vh;
+}
+
+/* ヘッダー ================================ */
+header {
+  width: 100%;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+}
+.header-logo {
+  margin: auto 50px;
+}
+.header-logo a {
+  color: #ee8070;
+  font-size: 30px;
+}
+.header-menus {
+  margin: auto 50px;
+  display: flex;
+}
+.header-menus li {
+  margin: auto 10px;
+}
+.header-menus a {
+  color: #ee8070;
+}
+
+/* メイン ================================ */
+.main {
+  padding: 50px;
+}
+

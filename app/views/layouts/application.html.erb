@@ -10,6 +10,18 @@
   </head>
 
   <body>
+    <header>
+      <div class="header-container">
+        <div class="header-logo">
+          <h1><%= link_to("REVIEW APP", "/") %></h1>
+        </div>
+        <ul class="header-menus">
+          <li><%= link_to("About", "/about")%></li>
+          <li><%= link_to("Index", reviews_path) %></li>
+          <li><%= link_to("Review", new_review_path) %></li>
+        </ul>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
