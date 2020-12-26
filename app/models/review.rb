@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
-  validates :others, {presence: true, length: {maximum: 140}}
-  validates :user_id, {presence: true}
+  validates :others, presence: true, length: {maximum: 140}
+  validates :user_id, presence: true
 
   def user
     return User.find_by(id: self.user_id)
