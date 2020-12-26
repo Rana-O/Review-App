@@ -38,9 +38,23 @@
           <p>ユーザ名</p>
           <input name="name" value="<%= @user.name %>">
           <p>メールアドレス</p>
-          <input name="email" value="<%= @user.email %>">
-          <input name="password" type="password" value="<%= @user.password %>"
+          <input name="user[email]" value="<%= @user.email %>">
+          <input name="user[password]" type="password" value="<%= @user.password %>">
           <input class="user-new-input" type="submit" value="新規登録">
+        <% end %>
+
+        <%= form_with @user do |f| %>
+          <div>
+            <p>ユーザ名</p>
+            <%= f.input :name %>
+          </div>
+
+          <div>
+            <p>メールアドレス</p>
+            <%= f.input :password %>
+          </div>
+
+          <%= f.submit '新規登録', class: 'user-new-input' %>
         <% end %>
       </div>
     </div>

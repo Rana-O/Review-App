@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, {only: [:index, :show, :edit, :update]}
-  before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
-  before_action :ensure_correct_user, {only: [:edit, :update]}
+  before_action :authenticate_user, only: [:index, :show, :edit, :update]
+  before_action :forbid_login_user, only: [:new, :create, :login_form, :login]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -16,17 +16,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(
-      name: params[:name],
-      email: params[:email],
-      password: params[:password]
-    )
+    @user = User.new(create_params)
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "ユーザ登録が完了しました"
-      redirect_to(user_path(@user.id))
+      redirect_to user_path(@user.id)
     else
-      render(:new)
+      render :new
     end
   end
 
@@ -36,13 +32,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.name = params[:name]
-    @user.email = params[:email]
-    if @user.save
+    if @user.update(update_params)
       flash[:notice] ="ユーザ情報を編集しました"
-      redirect_to(user_path)
+      redirect_to user_path
     else
-      render(:edit)
+      render :edit
     end
   end
 
@@ -76,7 +70,27 @@ class UsersController < ApplicationController
   def logout
     session[:user_id] = nil
     flash[:notice] = "ログアウトしました"
-    redirect_to("/login")
+    redirect_to login_url
+  end
+
+  private
+
+  def create_params
+    params
+      .require(:user)
+      .permit(
+        :name,
+        :email,
+        :password
+      )
+  end
+
+  def update_params
+    params
+      .permit(
+        :name,
+        :email
+      )
   end
 
   def ensure_correct_user
@@ -85,5 +99,4 @@ class UsersController < ApplicationController
       redirect_to(reviews_path)
     end
   end
-
 end
