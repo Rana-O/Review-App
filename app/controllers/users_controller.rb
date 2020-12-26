@@ -16,11 +16,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(
-      name: params[:name],
-      email: params[:email],
-      password: params[:password]
-    )
+    @user = User.new(create_params)
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "ユーザ登録が完了しました"
@@ -36,9 +32,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.name = params[:name]
-    @user.email = params[:email]
-    if @user.save
+    if @user.update(update_params)
       flash[:notice] ="ユーザ情報を編集しました"
       redirect_to user_path
     else
@@ -86,4 +80,23 @@ class UsersController < ApplicationController
     end
   end
 
+  private
+  def create_params
+    params
+      .require(:user)
+      .permit(
+        :name,
+        :email,
+        :password
+      )
+  end
+
+  def update_params
+    params
+      .require(:user)
+      .permit(
+        :name,
+        :email
+      )
+  end
 end
