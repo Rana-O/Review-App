@@ -5,6 +5,10 @@
     overflow: hidden;
     box-shadow: 0 2px 6px #c1ced7;
   }
+  .reviews-show .review-show-item .review-user-name p{
+    font-size: 30px;
+    color: #ee8070;
+  }
   .reviews-show .review-show-item .review-body {
     color: black;
     font-size: 20px;
@@ -25,6 +29,11 @@
 <div class="main reviews-show">
   <div class="container">
     <div class="review-show-item">
+      <div class="review-user-name">
+        <%= link_to(user_path(@user)) do %>
+          <p><%= @user.name %></p>
+        <% end %>
+      </div>
       <div class="review-body">
         <p>
           <%= @review.others %>
