@@ -101,6 +101,13 @@ header {
   font-size: 14px;
 }
 
+/* valideteエラー ================================ */
+.form-error {
+  color: #70D1E0;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
 /* メイン ================================ */
 .main {
   padding: 50px;

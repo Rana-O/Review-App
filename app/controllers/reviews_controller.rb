@@ -1,10 +1,12 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user
   def index
     @reviews = Review.all.order(created_at: :desc)
   end
 
   def show
     @review = Review.find(params[:id])
+    @user = @review.user
   end
 
   def new
@@ -12,7 +14,10 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(others: params[:others])
+    @review = Review.new(
+      others: params[:others],
+      user_id: @current_user.id
+    )
     if @review.save
       flash[:notice] = "レビューを投稿しました"
       redirect_to(reviews_path)

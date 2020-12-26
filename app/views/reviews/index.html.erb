@@ -5,12 +5,27 @@
     overflow: hidden;
     box-shadow: 0 2px 6px #c1ced7;
   }
+  .reviews-index .review-index-item a {
+    display: block;
+    width: inherit;
+  }
 </style>
 
 <div class="main reviews-index">
   <div class="container">
     <% @reviews.each do |review| %>
       <div class="review-index-item">
+        <div class="review-user-name">
+          <% if review.user != nil %>
+            <%= link_to(user_path(review.user)) do %>
+              <p><%= review.user.name %></p>
+            <% end %>
+          <% else %>
+            <%= link_to(reviews_path) do %>
+              <p>--</p>
+            <% end %>
+          <% end %>
+        </div>
         <%= link_to(review.others, review_path(review)) %>
       </div>
     <% end %>
