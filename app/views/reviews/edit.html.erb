@@ -1,0 +1,48 @@
+<style>
+  .form .form-body {
+    text-align: center;
+  }
+  .reviews-edit h1 {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .reviews-edit textarea {
+    font-size: 20px;
+    padding: 10px;
+    min-height: 140px;
+    border: 1px solid rgb(216, 218, 223);
+    resize: none;
+  }
+  .reviews-edit input {
+    display: block;
+    margin: 0 auto;
+    background-color: #ee8070;
+    color: white;
+    cursor: pointer;
+    width: 120px;
+    margin-top: 20px;
+    height: 45px;
+  }
+</style>
+
+
+<div class="main reviews-edit">
+  <div class="container">
+    <h1>編集する</h1>
+    <%= form_tag(review_path, method: :put) do %>
+      <div class="form">
+        <div class="form-body">
+          <% @review.errors.full_messages.each do |message|%>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
+          <textarea name="others">
+            <%= @review.others %>
+          </textarea>
+          <input type="submit" value="保存">
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
