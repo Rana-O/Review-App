@@ -20,9 +20,9 @@ class ReviewsController < ApplicationController
     )
     if @review.save
       flash[:notice] = "レビューを投稿しました"
-      redirect_to(reviews_path)
+      redirect_to reviews_path
     else
-      render(:new)
+      render :new
     end
   end
 
@@ -35,9 +35,9 @@ class ReviewsController < ApplicationController
     @review.others = params[:others]
     if @review.save
       flash[:notice] = "レビューを編集しました"
-      redirect_to(reviews_path)
+      redirect_to reviews_path
     else
-      render(:edit)
+      render :edit
     end
   end
 
@@ -45,6 +45,6 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @review.destroy
     flash[:notice] = "レビューを削除しました"
-    redirect_to(reviews_path)
+    redirect_to reviews_path
   end
 end
