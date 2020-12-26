@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, {only: [:index, :show, :edit, :update]}
+  before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
 
   def index
     @users = User.all
@@ -73,7 +74,7 @@ class UsersController < ApplicationController
 
   def logout
     session[:user_id] = nil
-    flash[:notice] =
+    flash[:notice] = "ログアウトしました"
     redirect_to("/login")
   end
 end

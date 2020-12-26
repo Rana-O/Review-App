@@ -13,7 +13,11 @@
     <header>
       <div class="header-container">
         <div class="header-logo">
-          <h1><%= link_to("REVIEW APP", "/") %></h1>
+          <% if @current_user %>
+            <h1><%= link_to("REVIEW APP", reviews_path) %></h1>
+          <% else %>
+            <h1><%= link_to("REVIEW APP", "/") %></h1>
+          <% end %>
         </div>
         <ul class="header-menus">
           <% if @current_user %>
