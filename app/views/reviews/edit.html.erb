@@ -32,7 +32,7 @@
     <%= form_tag(review_path, method: :put) do %>
       <div class="form">
         <div class="form-body">
-          <% @review.errors.full_messages.each do |message|%>
+          <% @review.errors.full_messages.each do |message| %>
             <div class="form-error">
               <%= message %>
             </div>

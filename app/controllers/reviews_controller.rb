@@ -8,12 +8,17 @@ class ReviewsController < ApplicationController
   end
 
   def new
+      @review = Review.new
   end
 
   def create
     @review = Review.new(others: params[:others])
-    @review.save
-    redirect_to(reviews_path)
+    if @review.save
+      flash[:notice] = "レビューを投稿しました"
+      redirect_to(reviews_path)
+    else
+      render(:new)
+    end
   end
 
   def edit
@@ -34,6 +39,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
+    flash[:notice] = "レビューを削除しました"
     redirect_to(reviews_path)
   end
 end
