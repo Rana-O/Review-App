@@ -25,20 +25,14 @@
       <div class="review-index-item">
         <div class="review-user-name">
           <% if review.user != nil %>
-            <%= link_to(user_path(review.user)) do %>
-              <p><%= review.user.name %></p>
-            <% end %>
+            <%= link_to(review.user.name, user_path(review.user)) %>
           <% else %>
-            <%= link_to(reviews_path) do %>
-              <p>--</p>
-            <% end %>
+            <%= link_to("--", reviews_path) %>
           <% end %>
         </div>
         <div class="review-others">
           <% if review.user != nil %>
-            <%= link_to(review_path(review)) do %>
-              <%= review.others %>
-            <% end %>
+            <%= link_to(review.others, review_path(review)) %>
           <%else%>
             <%= review.others %>
           <% end %>

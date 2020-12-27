@@ -14,26 +14,24 @@
       <div class="header-container">
         <div class="header-logo">
           <% if @current_user %>
-            <h1><%= link_to(reviews_path) do %>REVIEW APP<% end %></h1>
+            <h1><%= link_to("REVIEW APP", reviews_path) %></h1>
           <% else %>
-            <h1><%= link_to("/") do %>REVIEW APP<% end %></h1>
+            <h1><%= link_to("REVIEW APP", "/") %></h1>
           <% end %>
         </div>
         <ul class="header-menus">
           <% if @current_user %>
             <li>
-              <%= link_to(user_path(@current_user.id)) do %>
-                <%= @current_user.name %>
-              <% end %>
+              <%= link_to(@current_user.name, user_path(@current_user.id)) %>
             </li>
-            <li><%= link_to(reviews_path) do %>レビューリスト<% end %></li>
-            <li><%= link_to(users_path) do %>ユーザリスト<% end %></li>
-            <li><%= link_to(new_review_path) do %>レビューする<% end %></li>
-            <li><%= link_to(logout_url, {method: :post}) do %>ログアウト<% end %></li>
+            <li><%= link_to("レビューリスト", reviews_path) %></li>
+            <li><%= link_to("ユーザリスト", users_path)  %></li>
+            <li><%= link_to("レビューする", new_review_path) %></li>
+            <li><%= link_to("ログアウト", logout_url, {method: :post}) %></li>
           <% else %>
-            <li><%= link_to("/about") do %>REVIEW APPとは<% end %></li>
-            <li><%= link_to(new_user_path) do %>新規登録<% end %></li>
-            <li><%= link_to(login_url) do %>ログイン<% end %></li>
+            <li><%= link_to("REVIEW APPとは", "/about") %></li>
+            <li><%= link_to("新規登録", new_user_path) %></li>
+            <li><%= link_to("ログイン", login_url) %></li>
           <% end %>
         </ul>
       </div>

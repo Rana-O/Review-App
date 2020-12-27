@@ -36,9 +36,9 @@
               <%= message %>
             </div>
           <% end %>
-          <textarea name="others"></textarea>
-          <%= f.text_area :others %>
-          <%= f.submit '投稿'%>
+          <%# <textarea name="others"></textarea> %>
+          <%= text_area_tag :others %>
+          <%= f.submit '投稿' %>
         </div>
       </div>
     <% end %>
