@@ -22,7 +22,9 @@
     <% @users.each do |user| %>
       <div class="users-index-item">
         <div class="user-name">
-        <%= link_to(user.name, user_path(user)) %>
+        <%= link_to(user_path(user)) do %>
+          <%= user.name %>
+        <% end %>
         </div>
       </div>
     <% end %>

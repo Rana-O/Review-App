@@ -5,7 +5,7 @@
     overflow: hidden;
     box-shadow: 0 2px 6px #c1ced7;
   }
-  .reviews-show .review-show-item .review-user-name p{
+  .reviews-show .review-show-item .review-user-name {
     font-size: 30px;
     color: #ee8070;
   }
@@ -45,8 +45,8 @@
         </p>
       </div>
       <div class="review-menus">
-        <%= link_to("編集", edit_review_path) %>
-        <%= link_to("削除", review_path, method: :delete, data: {confirm: "レビューを削除しますか？"}) %>
+        <%= link_to(edit_review_path) do %>編集<% end %>
+        <%= link_to(review_path, method: :delete, data: {confirm: "レビューを削除しますか？"}) do %>削除<% end %>
       </div>
     </div>
   </div>

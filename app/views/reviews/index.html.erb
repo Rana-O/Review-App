@@ -9,6 +9,14 @@
     display: block;
     width: inherit;
   }
+  .reviews-index .review-index-item .review-user-name a{
+    color: #ee8070;
+  }
+  .reviews-index .review-index-item .review-others {
+    color: black;
+    font-size: 14px;
+  }
+
 </style>
 
 <div class="main reviews-index">
@@ -26,7 +34,15 @@
             <% end %>
           <% end %>
         </div>
-        <%= link_to(review.others, review_path(review)) %>
+        <div class="review-others">
+          <% if review.user != nil %>
+            <%= link_to(review_path(review)) do %>
+              <%= review.others %>
+            <% end %>
+          <%else%>
+            <%= review.others %>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>

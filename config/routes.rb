@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'about' => 'home#about'
   get 'login' => 'users#login_form', as: :login
   post 'login' => 'users#login'
-  post 'logout' =>'users#logout'
+  post 'logout' =>'users#logout', as: :logout
   resources :reviews
   resources :users
 
