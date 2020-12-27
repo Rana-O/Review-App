@@ -28,7 +28,7 @@
 <div class="main reviews-new">
   <div class="container">
     <h1>投稿する</h1>
-    <%= form_tag(reviews_path, method: :post) do %>
+    <%= form_for @review do |f| %>
       <div class="form">
         <div class="form-body">
           <% @review.errors.full_messages.each do |message| %>
@@ -37,7 +37,8 @@
             </div>
           <% end %>
           <textarea name="others"></textarea>
-          <input type="submit" value="投稿">
+          <%= f.text_area :others %>
+          <%= f.submit '投稿'%>
         </div>
       </div>
     <% end %>

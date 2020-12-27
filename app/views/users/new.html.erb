@@ -34,13 +34,14 @@
             <%= message %>
           </div>
         <% end %>
-        <%= form_tag(users_path, method: :post) do %>
+        <%= form_for @user do |f| %>
           <p>ユーザ名</p>
-          <input name="name" value="<%= @user.name %>">
+          <%= f.text_field :name %>
           <p>メールアドレス</p>
-          <input name="email" value="<%= @user.email %>">
-          <input name="password" type="password" value="<%= @user.password %>"
-          <input class="user-new-input" type="submit" value="新規登録">
+          <%= f.text_field :email %>
+          <p>パスワード</p>
+          <%= f.text_field :password %>
+          <%= f.submit '新規登録', class: "user-new-input" %>
         <% end %>
       </div>
     </div>
