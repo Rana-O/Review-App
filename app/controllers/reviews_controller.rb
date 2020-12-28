@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+
   def index
     @reviews = Review.all.order(created_at: :desc)
   end
@@ -46,5 +48,13 @@ class ReviewsController < ApplicationController
     @review.destroy
     flash[:notice] = "レビューを削除しました"
     redirect_to reviews_path
+  end
+
+  def ensure_correct_user
+    @review = Review.find(params[:id])
+    if @review.user_id != @current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to reviews_path
+    end
   end
 end
