@@ -45,8 +45,10 @@
         </p>
       </div>
       <div class="review-menus">
-        <%= link_to("編集", edit_review_path) %>
-        <%= link_to("削除", review_path, method: :delete, data: {confirm: "レビューを削除しますか？"}) %>
+        <% if @review.user_id == @current_user.id %>
+          <%= link_to("編集", edit_review_path) %>
+          <%= link_to("削除", review_path, method: :delete, data: {confirm: "レビューを削除しますか？"}) %>
+        <% end %>
       </div>
     </div>
   </div>

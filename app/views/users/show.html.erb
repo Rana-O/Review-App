@@ -19,5 +19,15 @@
           <%= link_to(user_path, method: :delete, data: {confirm: "#{@user.name}を削除しますか？"}) do %>削除<% end %>
         <% end %>
     </div>
+    <% @user.reviews.each do |review| %>
+      <div class="review-index-item">
+        <div class="review-user-name">
+          <%= link_to(review.user.name, user_path(review.user)) %>
+        </div>
+        <div class="review-others">
+          <%= review.others %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
