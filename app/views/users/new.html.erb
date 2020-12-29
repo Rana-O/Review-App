@@ -6,13 +6,17 @@
   .users-new .form-body {
     text-align: center;
   }
+  .users-new .form-body label {
+    display: block;
+  }
   .users-new .form-body input {
-    margin-bottom: 20px;
+    display: block;
+    margin: 0 auto 20px;
     border: 1px solid rgb(216, 218, 223);
   }
   .users-new .form-body .user-new-input {
     display: block;
-    margin: 20px auto;
+    margin: 50px auto;
     background-color: #ee8070;
     color: white;
     cursor: pointer;
@@ -35,11 +39,11 @@
           </div>
         <% end %>
         <%= form_for @user do |f| %>
-          <p>ユーザ名</p>
+          <%= f.label :name, "ユーザ名" %>
           <%= f.text_field :name %>
-          <p>メールアドレス</p>
+          <%= f.label :email, "メールアドレス" %>
           <%= f.text_field :email %>
-          <p>パスワード</p>
+          <%= f.label :password, "パスワード" %>
           <%= f.text_field :password %>
           <%= f.submit '新規登録', class: "user-new-input" %>
         <% end %>

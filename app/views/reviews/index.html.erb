@@ -24,14 +24,14 @@
     <% @reviews.each do |review| %>
       <div class="review-index-item">
         <div class="review-user-name">
-          <% if review.user != nil %>
+          <% if review.user.present? %>
             <%= link_to(review.user.name, user_path(review.user)) %>
           <% else %>
-            <%= link_to("--", reviews_path) %>
+            <p>--</p>
           <% end %>
         </div>
         <div class="review-others">
-          <% if review.user != nil %>
+          <% if review.user.present? %>
             <%= link_to(review.others, review_path(review)) %>
           <%else%>
             <%= review.others %>

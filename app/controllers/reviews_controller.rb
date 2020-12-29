@@ -16,10 +16,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(
-      others: params[:others],
-      user_id: @current_user.id
-    )
+    @review = Review.new(create_params)
+    @review.user_id = @current_user.id
     if @review.save
       flash[:notice] = "レビューを投稿しました"
       redirect_to reviews_path
@@ -56,5 +54,14 @@ class ReviewsController < ApplicationController
       flash[:notice] = "権限がありません"
       redirect_to reviews_path
     end
+  end
+
+  private
+  def create_params
+    params
+      .require(:review)
+      .permit(
+        :others
+      )
   end
 end
