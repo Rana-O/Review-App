@@ -16,7 +16,7 @@
   }
   .reviews-show .review-show-item .review-menus {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
   .reviews-show .review-show-item .review-menus a {
     color: #8899a6;
@@ -45,10 +45,19 @@
         </p>
       </div>
       <div class="review-menus">
-        <% if @review.user_id == @current_user.id %>
-          <%= link_to("編集", edit_review_path) %>
-          <%= link_to("削除", review_path, method: :delete, data: {confirm: "レビューを削除しますか？"}) %>
-        <% end %>
+        <div class="like">
+          <% if @already_liked %>
+            <%= link_to("いいね！済み", like_path, method: :delete)%>
+          <% else %>
+            <%= link_to("いいね！", likes_path(review_id: @review.id), method: :post) %>
+          <% end %>
+        </div>
+        <div class="edit-bar">
+          <% if @review.user_id == @current_user.id %>
+            <%= link_to("編集", edit_review_path) %>
+            <%= link_to("削除", review_path, method: :delete, data: {confirm: "レビューを削除しますか？"}) %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     @user = @review.user
+    @already_liked = @review.likes.exists?(user_id: @current_user.id)
   end
 
   def new

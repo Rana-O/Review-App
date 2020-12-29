@@ -15,4 +15,5 @@ class User < ApplicationRecord
   validates :password, presence: true
 
   has_many :reviews
+  has_many :likes
 end
