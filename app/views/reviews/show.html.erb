@@ -18,11 +18,20 @@
     display: flex;
     justify-content: space-between;
   }
-  .reviews-show .review-show-item .review-menus a {
+  .reviews-show .review-show-item .review-menus .edit-bar a {
     color: #8899a6;
     text-decoration: underline;
     margin: 0 10px;
   }
+  .reviews-show .review-show-item .review-menus .like .fa{
+    font-size: 25px;
+  }
+  .reviews-show .review-show-item .review-menus .like .like-btn-unlike {
+    color: #E54932;
+  }
+.reviews-show .review-show-item .review-menus .like .like-btn {
+  color: #8899a6;
+}
 
 </style>
 
@@ -47,9 +56,13 @@
       <div class="review-menus">
         <div class="like">
           <% if @already_liked %>
-            <%= link_to("いいね！済み", like_path, method: :delete)%>
+            <%= link_to(like_path, method: :delete) do %>
+              <span class="fa fa-heart like-btn-unlike"></span>
+            <% end %>
           <% else %>
-            <%= link_to("いいね！", likes_path(review_id: @review.id), method: :post) %>
+            <%= link_to(likes_path(review_id: @review.id), method: :post) do %>
+              <span class="fa fa-heart like-btn"></span>
+            <% end %>
           <% end %>
         </div>
         <div class="edit-bar">

@@ -6,7 +6,50 @@
     color: #8899a6;
     text-decoration: underline;
     margin: 0 10px;
+  }.user-show .review-index-item {
+    padding: 20px 30px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px #c1ced7;
   }
+  .user-show .review-index-item a {
+    display: block;
+    width: inherit;
+  }
+  .user-show .review-index-item .review-user-name a{
+    color: #ee8070;
+  }
+  .user-show .review-index-item .review-others {
+    color: black;
+    font-size: 14px;
+  }
+
+
+
+  .user-tabs {
+  margin-top: 40px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+}
+
+.user-tabs li {
+  float: left;
+}
+
+.user-tabs li.active {
+  border-bottom: 2px solid #70D1E0;
+}
+
+.user-tabs li.active a {
+  color: #57575f;
+}
+
+.user-tabs a {
+  display: inline-block;
+  padding: 16px 30px;
+  color: #afb6bf;
+}
+
 </style>
 
 <div class="main user-show">
@@ -19,15 +62,19 @@
           <%= link_to("削除", user_path, method: :delete, data: {confirm: "#{@user.name}を削除しますか？"}) %>
         <% end %>
     </div>
-    <% @user.reviews.each do |review| %>
-      <div class="review-index-item">
+    <ul class="user-tabs">
+      <li class="active"><%= link_to("投稿", user_path(@user.id)) %></li>
+      <li><%= link_to("いいね!", "/users/#{@user.id}/likes") %></li>
+    </ul>
+    <div class="review-index-item">
+      <% @user.reviews.each do |review| %>
         <div class="review-user-name">
           <%= link_to(review.user.name, user_path(review.user)) %>
         </div>
         <div class="review-others">
           <%= review.others %>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
