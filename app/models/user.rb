@@ -14,6 +14,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, length: { maximum: 255}
   validates :password, presence: true
 
-  has_many :reviews
-  has_many :likes
+  has_many :reviews, dependent: :destroy
+  has_many :likes, dependent: :destroy
 end

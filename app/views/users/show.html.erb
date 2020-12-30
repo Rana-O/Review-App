@@ -23,8 +23,6 @@
     font-size: 14px;
   }
 
-
-
   .user-tabs {
   margin-top: 40px;
   background-color: white;
@@ -66,15 +64,15 @@
       <li class="active"><%= link_to("投稿", user_path(@user.id)) %></li>
       <li><%= link_to("いいね!", "/users/#{@user.id}/likes") %></li>
     </ul>
-    <div class="review-index-item">
       <% @user.reviews.each do |review| %>
-        <div class="review-user-name">
-          <%= link_to(review.user.name, user_path(review.user)) %>
-        </div>
-        <div class="review-others">
-          <%= review.others %>
+        <div class="review-index-item">
+          <div class="review-user-name">
+            <%= link_to(review.user.name, user_path(review.user)) %>
+          </div>
+          <div class="review-others">
+            <%= review.others %>
+          </div>
         </div>
       <% end %>
-    </div>
   </div>
 </div>
