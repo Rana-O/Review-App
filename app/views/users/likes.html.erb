@@ -42,10 +42,7 @@
   padding: 16px 30px;
   color: #afb6bf;
 }
-
 </style>
-
-
 
 <div class="main user-show">
   <div class="container">
@@ -62,13 +59,12 @@
       <li><%= link_to("いいね!", "/users/#{@user.id}/likes") %></li>
     </ul>
     <% @likes.each do |like| %>
-      <% review = Review.find(like.review_id) %>
       <div class="review-index-item">
         <div class="review-user-name">
-          <%= review.user.name %>
+          <%= like.review.user.name %>
         </div>
         <div class="review-others">
-          <%= review.others %>
+          <%= like.review.others %>
         </div>
       </div>
     <% end %>
