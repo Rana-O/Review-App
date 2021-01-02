@@ -4,9 +4,9 @@
     <title>ReviewApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body>
@@ -21,15 +21,17 @@
         </div>
         <ul class="header-menus">
           <% if @current_user %>
-            <li><%= link_to(@current_user.name, user_path(@current_user.id)) %></li>
+            <li>
+              <%= link_to(@current_user.name, user_path(@current_user.id)) %>
+            </li>
             <li><%= link_to("レビューリスト", reviews_path) %></li>
-            <li><%= link_to("ユーザリスト", users_path) %></li>
+            <li><%= link_to("ユーザリスト", users_path)  %></li>
             <li><%= link_to("レビューする", new_review_path) %></li>
-            <li><%= link_to("ログアウト", "/logout", {method: :post}) %></li>
+            <li><%= link_to("ログアウト", logout_url, {method: :post}) %></li>
           <% else %>
-            <li><%= link_to("REVIEW APPとは", "/about")%></li>
+            <li><%= link_to("REVIEW APPとは", "/about") %></li>
             <li><%= link_to("新規登録", new_user_path) %></li>
-            <li><%= link_to("ログイン", "/login") %></li>
+            <li><%= link_to("ログイン", login_url) %></li>
           <% end %>
         </ul>
       </div>

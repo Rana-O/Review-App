@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+
   def index
     @reviews = Review.all.order(created_at: :desc)
   end
@@ -7,6 +9,7 @@ class ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     @user = @review.user
+    @already_liked = @review.likes.exists?(user_id: @current_user.id)
   end
 
   def new
@@ -14,15 +17,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(
-      others: params[:others],
-      user_id: @current_user.id
-    )
+    @review = Review.new(create_params)
+    @review.user_id = @current_user.id
     if @review.save
       flash[:notice] = "レビューを投稿しました"
-      redirect_to(reviews_path)
+      redirect_to reviews_path
     else
-      render(:new)
+      render :new
     end
   end
 
@@ -35,9 +36,9 @@ class ReviewsController < ApplicationController
     @review.others = params[:others]
     if @review.save
       flash[:notice] = "レビューを編集しました"
-      redirect_to(reviews_path)
+      redirect_to reviews_path
     else
-      render(:edit)
+      render :edit
     end
   end
 
@@ -45,6 +46,23 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @review.destroy
     flash[:notice] = "レビューを削除しました"
-    redirect_to(reviews_path)
+    redirect_to reviews_path
+  end
+
+  def ensure_correct_user
+    @review = Review.find(params[:id])
+    if @review.user_id != @current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to reviews_path
+    end
+  end
+
+  private
+  def create_params
+    params
+      .require(:review)
+      .permit(
+        :others
+      )
   end
 end

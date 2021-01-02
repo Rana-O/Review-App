@@ -10,21 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_26_025005) do
+ActiveRecord::Schema.define(version: 2020_12_30_232220) do
 
-  create_table "reviews", force: :cascade do |t|
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_likes_on_review_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "others"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", limit: 100, null: false, comment: "ユーザの名前"
+    t.string "email", null: false, comment: "ユーザのメールアドレス"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password"
+    t.string "password_digest"
   end
 
+  add_foreign_key "likes", "reviews"
+  add_foreign_key "likes", "users"
+  add_foreign_key "reviews", "users"
 end

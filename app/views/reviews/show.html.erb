@@ -5,7 +5,7 @@
     overflow: hidden;
     box-shadow: 0 2px 6px #c1ced7;
   }
-  .reviews-show .review-show-item .review-user-name p{
+  .reviews-show .review-show-item .review-user-name {
     font-size: 30px;
     color: #ee8070;
   }
@@ -16,13 +16,22 @@
   }
   .reviews-show .review-show-item .review-menus {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
-  .reviews-show .review-show-item .review-menus a {
+  .reviews-show .review-show-item .review-menus .edit-bar a {
     color: #8899a6;
     text-decoration: underline;
     margin: 0 10px;
   }
+  .reviews-show .review-show-item .review-menus .like .fa{
+    font-size: 25px;
+  }
+  .reviews-show .review-show-item .review-menus .like .like-btn-unlike {
+    color: #E54932;
+  }
+.reviews-show .review-show-item .review-menus .like .like-btn {
+  color: #8899a6;
+}
 
 </style>
 
@@ -45,8 +54,23 @@
         </p>
       </div>
       <div class="review-menus">
-        <%= link_to("編集", edit_review_path) %>
-        <%= link_to("削除", review_path, method: :delete, data: {confirm: "レビューを削除しますか？"}) %>
+        <div class="like">
+          <% if @already_liked %>
+            <%= link_to(like_path, method: :delete) do %>
+              <span class="fa fa-heart like-btn-unlike"></span>
+            <% end %>
+          <% else %>
+            <%= link_to(likes_path(review_id: @review.id), method: :post) do %>
+              <span class="fa fa-heart like-btn"></span>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="edit-bar">
+          <% if @review.user_id == @current_user.id %>
+            <%= link_to("編集", edit_review_path) %>
+            <%= link_to("削除", review_path, method: :delete, data: {confirm: "レビューを削除しますか？"}) %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

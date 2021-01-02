@@ -6,13 +6,17 @@
   .users-new .form-body {
     text-align: center;
   }
+  .users-new .form-body label {
+    display: block;
+  }
   .users-new .form-body input {
-    margin-bottom: 20px;
+    display: block;
+    margin: 0 auto 20px;
     border: 1px solid rgb(216, 218, 223);
   }
   .users-new .form-body .user-new-input {
     display: block;
-    margin: 20px auto;
+    margin: 50px auto;
     background-color: #ee8070;
     color: white;
     cursor: pointer;
@@ -34,13 +38,14 @@
             <%= message %>
           </div>
         <% end %>
-        <%= form_tag(users_path, method: :post) do %>
-          <p>ユーザ名</p>
-          <input name="name" value="<%= @user.name %>">
-          <p>メールアドレス</p>
-          <input name="email" value="<%= @user.email %>">
-          <input name="password" type="password" value="<%= @user.password %>"
-          <input class="user-new-input" type="submit" value="新規登録">
+        <%= form_for @user do |f| %>
+          <%= f.label :name, "ユーザ名" %>
+          <%= f.text_field :name %>
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.text_field :email %>
+          <%= f.label :password, "パスワード" %>
+          <%= f.text_field :password %>
+          <%= f.submit '新規登録', class: "user-new-input" %>
         <% end %>
       </div>
     </div>

@@ -1,17 +1,21 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: likes
 #
 #  id         :integer          not null, primary key
-#  name       :string
-#  email      :string
+#  user_id    :integer
+#  review_id  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  password   :string
+#
+# Indexes
+#
+#  index_likes_on_review_id  (review_id)
+#  index_likes_on_user_id    (user_id)
 #
 require 'test_helper'
 
-class UserTest < ActiveSupport::TestCase
+class LikeTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
